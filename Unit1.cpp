@@ -2,6 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
+#include "mmsystem.h"
 
 #include "Unit1.h"
 //---------------------------------------------------------------------------
@@ -10,6 +11,12 @@
 TForm1 *Form1;
 
 int moveBallHorizontal = -8, moveBallVertical = -8;
+
+int pickups = 0;
+
+int player1points;
+int player2points;
+
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -96,8 +103,10 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
  ball->Top + ball->Height/2 < player1->Top + player1->Height &&
  ball->Left < player1->Left + player1->Width ))
    {
+   pickups++;
             if (moveBallHorizontal < 0)
             {
+             sndPlaySound("snd/alien.wav",SND_ASYNC);
              moveBallHorizontal = -moveBallHorizontal;
             }
 
@@ -105,7 +114,8 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
               if (ball->Top > player1->Top + player1->Height/3 - ball->Height/2 &&
             ball->Top < player1->Top + 2*player1->Height/3 - ball->Height/2)
         {
-            moveBallHorizontal += 3;
+            sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
+            moveBallHorizontal += 1.5;
         }
 
    }
@@ -115,16 +125,39 @@ else if (ball->Top + ball->Height/2 >= player2->Top  &&
 ball->Top + ball->Height/2 <= player2->Top + player2->Height &&
 ball->Left + ball->Width >= player2->Left )
 {
+pickups++;
 if (moveBallHorizontal > 0)
    {
+    sndPlaySound("snd/predator.wav",SND_ASYNC);
     moveBallHorizontal = - moveBallHorizontal;
    }
 
    if (ball->Top > player2->Top + player2->Height/3 - ball->Height/2 &&
             ball->Top < player2->Top + 2*player2->Height/3 - ball->Height/2)
         {
-            moveBallHorizontal -= 3;
+            sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
+            moveBallHorizontal -= 1.5;
         }
 }
+//shrink paddles
+ if (pickups > 8)
+    {
+        Form1->player1->Picture->LoadFromFile("img/zmniejszgracz1.bmp");
+
+        Form1->player2->Picture->LoadFromFile("img/zmniejszgracz2.bmp");
+
+    }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::newGameClick(TObject *Sender)
+{
+moveBallHorizontal = -8;
+moveBallVertical = -8;
+TimerBall->Enabled = true;
+Label1->Visible = false;
+newGame->Visible = false;
+
+pickups = 0;
+
 }
 //---------------------------------------------------------------------------
