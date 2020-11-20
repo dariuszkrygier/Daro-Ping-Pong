@@ -24,6 +24,9 @@ __published:	// IDE-managed Components
         TTimer *TimerBall;
         TLabel *Label1;
         TButton *newGame;
+        TButton *nextRound;
+        TLabel *Label2Score;
+        TLabel *Label3Pickups;
         void __fastcall Player1UpTimer(TObject *Sender);
         void __fastcall Player1DownTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
@@ -34,6 +37,8 @@ __published:	// IDE-managed Components
         void __fastcall Player2DownTimer(TObject *Sender);
         void __fastcall TimerBallTimer(TObject *Sender);
         void __fastcall newGameClick(TObject *Sender);
+        void __fastcall nextRoundClick(TObject *Sender);
+        void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);
