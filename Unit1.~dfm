@@ -53705,9 +53705,9 @@ object Form1: TForm1
     WordWrap = True
   end
   object Label3Pickups: TLabel
-    Left = 344
+    Left = 320
     Top = 184
-    Width = 314
+    Width = 361
     Height = 37
     Align = alCustom
     Alignment = taCenter

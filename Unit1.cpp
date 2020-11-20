@@ -74,12 +74,12 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
 {
  ball->Left +=  moveBallHorizontal;
  ball->Top +=  moveBallVertical;
- // odbicie od górnej sciany
+ // top wall pickup
  if (ball->Top-5 <= table->Top)
     {
     moveBallVertical = - moveBallVertical;
     }
- // odbicie od dolnej sciany
+ // down wall pickup
  if (ball->Top + ball->Height +5 >= table->Height)
     {
      moveBallVertical = - moveBallVertical;
@@ -111,8 +111,8 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
    {
 
             if (moveBallHorizontal < 0)
-            {
-            pickups++;
+         {
+             pickups++;
              sndPlaySound("snd/alien.wav",SND_ASYNC);
              moveBallHorizontal = -moveBallHorizontal;
 
@@ -120,19 +120,19 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
             // ball fasten
               if (ball->Top > player1->Top + player1->Height/3 - ball->Height/2 &&
             ball->Top < player1->Top + 2*player1->Height/3 - ball->Height/2)
-        {
+            {
             sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
             moveBallHorizontal += 1.5;
-        }
+            }
          }
    }
 
   //predator loses
     if  (ball->Left + ball->Width > player2->Left + player2->Width &&
-         (ball->Top + ball->Height / 2 < player2->Top ||
-         ball->Top + ball->Height / 2 > player2->Top + player2->Height))
+        (ball->Top + ball->Height / 2 < player2->Top ||
+        ball->Top + ball->Height / 2 > player2->Top + player2->Height))
          {
-         sndPlaySound("snd/ugly.wav",SND_ASYNC);
+        sndPlaySound("snd/ugly.wav",SND_ASYNC);
         TimerBall->Enabled = false;
         ball->Visible = false;
         player1points ++;
@@ -193,20 +193,20 @@ Label3Pickups->Visible = false;
 newGame->Visible = false;
 nextRound->Visible = false;
 
-    player1->Left = table->Left + 20;
-    player2->Left = table->Width - 20 - player2->Width;
-    ball->Left = table->Width/2;
-    ball->Top = table->Height/2;
-    player1->Top = table->Height/2 - player1->Height/2;
-    player2->Top = table->Height/2 - player2->Height/2;
- player1points =0;
- player2points = 0;
+player1->Left = table->Left + 20;
+player2->Left = table->Width - 20 - player2->Width;
+ball->Left = table->Width/2;
+ball->Top = table->Height/2;
+player1->Top = table->Height/2 - player1->Height/2;
+player2->Top = table->Height/2 - player2->Height/2;
+player1points =0;
+player2points = 0;
 
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::nextRoundClick(TObject *Sender)
 {
- Form1->player1->Picture->LoadFromFile("img/alien1.bmp");
+Form1->player1->Picture->LoadFromFile("img/alien1.bmp");
 Form1->player2->Picture->LoadFromFile("img/predator2.bmp");
 moveBallHorizontal = -11;
 moveBallVertical = -8;
@@ -219,19 +219,19 @@ Label3Pickups->Visible = false;
 newGame->Visible = false;
 nextRound->Visible = false;
 
-    player1->Left = table->Left + 20;
-    player2->Left = table->Width - 20 - player2->Width;
-    ball->Left = table->Width/2;
-    ball->Top = table->Height/2;
-    player1->Top = table->Height/2 - player1->Height/2;
-    player2->Top = table->Height/2 - player2->Height/2;
+player1->Left = table->Left + 20;
+player2->Left = table->Width - 20 - player2->Width;
+ball->Left = table->Width/2;
+ball->Top = table->Height/2;
+player1->Top = table->Height/2 - player1->Height/2;
+player2->Top = table->Height/2 - player2->Height/2;
 
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-ShowMessage(" Welcome!\n\n The battle to conquer Earth begins.\n Alien moves using A and Z.\n Predator moves using up and down arrows.\n Pickup in the middle of Alien or Predator to fasten Earth ball.\n After 8 pickups both Alien and Predator shrink.\n\n Click ok to begin hunting.");
+ ShowMessage(" Welcome!\n\n The battle to conquer Earth begins.\n Alien moves using A and Z.\n Predator moves using up and down arrows.\n Pickup in the middle of Alien or Predator to fasten Earth ball.\n After 8 pickups both Alien and Predator shrink.\n\n Click ok to begin hunting.");
 }
 //---------------------------------------------------------------------------
 
