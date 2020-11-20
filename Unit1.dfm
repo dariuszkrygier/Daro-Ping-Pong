@@ -13,6 +13,7 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyUp = FormKeyUp
   PixelsPerInch = 96
@@ -53663,11 +53664,14 @@ object Form1: TForm1
     Transparent = True
   end
   object Label1: TLabel
-    Left = 296
+    Left = 304
     Top = 64
     Width = 393
     Height = 37
+    Align = alCustom
     Alignment = taCenter
+    Anchors = []
+    AutoSize = False
     Caption = 'Let'#39's fight to conquer Earth!'
     Color = clBlack
     Font.Charset = DEFAULT_CHARSET
@@ -53677,6 +53681,49 @@ object Form1: TForm1
     Font.Style = []
     ParentColor = False
     ParentFont = False
+    WordWrap = True
+  end
+  object Label2Score: TLabel
+    Left = 448
+    Top = 128
+    Width = 105
+    Height = 37
+    Align = alCustom
+    Alignment = taCenter
+    Anchors = []
+    AutoSize = False
+    Caption = 'Score'
+    Color = clBlack
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -32
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+    WordWrap = True
+  end
+  object Label3Pickups: TLabel
+    Left = 344
+    Top = 184
+    Width = 314
+    Height = 37
+    Align = alCustom
+    Alignment = taCenter
+    Anchors = []
+    AutoSize = False
+    Caption = 'Number of pickups:    '
+    Color = clBlack
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -32
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+    WordWrap = True
   end
   object newGame: TButton
     Left = 392
@@ -53693,6 +53740,23 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
     OnClick = newGameClick
+  end
+  object nextRound: TButton
+    Left = 392
+    Top = 344
+    Width = 217
+    Height = 41
+    Cursor = crHandPoint
+    Caption = 'Next Round'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -32
+    Font.Name = 'Malgun Gothic'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    Visible = False
+    OnClick = nextRoundClick
   end
   object Player1Up: TTimer
     Enabled = False
