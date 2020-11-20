@@ -91,7 +91,10 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
         ball->Top + ball->Height / 2 > player1->Top + player1->Height))
 
          {
-        sndPlaySound("snd/gameover.wav",SND_ASYNC);
+         PlaySound("Three", HInstance, SND_ASYNC | SND_RESOURCE);
+        //sndPlaySound("snd/gameover.wav",SND_ASYNC);
+
+
         TimerBall->Enabled = false;
         ball->Visible = false;
         player2points ++;
@@ -113,7 +116,8 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
             if (moveBallHorizontal < 0)
          {
              pickups++;
-             sndPlaySound("snd/alien.wav",SND_ASYNC);
+              PlaySound("Two", HInstance, SND_ASYNC | SND_RESOURCE);
+             //sndPlaySound("snd/alien.wav",SND_ASYNC);
              moveBallHorizontal = -moveBallHorizontal;
 
 
@@ -121,7 +125,8 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
               if (ball->Top > player1->Top + player1->Height/3 - ball->Height/2 &&
             ball->Top < player1->Top + 2*player1->Height/3 - ball->Height/2)
             {
-            sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
+            PlaySound("One", HInstance, SND_ASYNC | SND_RESOURCE);
+            //sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
             moveBallHorizontal += 1.5;
             }
          }
@@ -132,7 +137,8 @@ void __fastcall TForm1::TimerBallTimer(TObject *Sender)
         (ball->Top + ball->Height / 2 < player2->Top ||
         ball->Top + ball->Height / 2 > player2->Top + player2->Height))
          {
-        sndPlaySound("snd/ugly.wav",SND_ASYNC);
+         PlaySound("Seven", HInstance, SND_ASYNC | SND_RESOURCE);
+        //sndPlaySound("snd/ugly.wav",SND_ASYNC);
         TimerBall->Enabled = false;
         ball->Visible = false;
         player1points ++;
@@ -154,14 +160,16 @@ ball->Left + ball->Width >= player2->Left )
 if (moveBallHorizontal > 0)
    {
    pickups++;
-    sndPlaySound("snd/predator.wav",SND_ASYNC);
+   PlaySound("Four", HInstance, SND_ASYNC | SND_RESOURCE);
+    //sndPlaySound("snd/predator.wav",SND_ASYNC);
     moveBallHorizontal = - moveBallHorizontal;
 
 
    if (ball->Top > player2->Top + player2->Height/3 - ball->Height/2 &&
             ball->Top < player2->Top + 2*player2->Height/3 - ball->Height/2)
         {
-            sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
+        PlaySound("One", HInstance, SND_ASYNC | SND_RESOURCE);
+            //sndPlaySound("snd/accelerateball.wav",SND_ASYNC);
             moveBallHorizontal -= 1.5;
         }
    }
@@ -169,9 +177,11 @@ if (moveBallHorizontal > 0)
 //shrink alien and predator
  if (pickups == 8)
     {
-        Form1->player1->Picture->LoadFromFile("img/zmniejszgracz1.bmp");
+        Form1->player1->Picture->Bitmap -> Handle = LoadBitmap(HInstance, "ID_zmniejszgracz1");
+        //LoadFromFile("img/zmniejszgracz1.bmp");
 
-        Form1->player2->Picture->LoadFromFile("img/zmniejszgracz2.bmp");
+        Form1->player2->Picture->Bitmap -> Handle = LoadBitmap(HInstance, "ID_zmniejszgracz2");
+        //LoadFromFile("img/zmniejszgracz2.bmp");
         player2->Left = table->Width - 20 - player2->Width;
 
 
@@ -180,8 +190,9 @@ if (moveBallHorizontal > 0)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::newGameClick(TObject *Sender)
 {
-Form1->player1->Picture->LoadFromFile("img/alien1.bmp");
-Form1->player2->Picture->LoadFromFile("img/predator2.bmp");
+Form1->player1->Picture->Bitmap -> Handle = LoadBitmap(HInstance, "ID_alien1");
+Form1->player2->Picture-> Bitmap -> Handle = LoadBitmap(HInstance, "ID_predator2");
+//LoadFromFile("img/predator2.bmp");
 moveBallHorizontal = -11;
 moveBallVertical = -8;
 pickups = 0;
@@ -206,8 +217,10 @@ player2points = 0;
 //---------------------------------------------------------------------------
 void __fastcall TForm1::nextRoundClick(TObject *Sender)
 {
-Form1->player1->Picture->LoadFromFile("img/alien1.bmp");
-Form1->player2->Picture->LoadFromFile("img/predator2.bmp");
+Form1->player1->Picture->Bitmap -> Handle = LoadBitmap(HInstance, "ID_alien1");
+Form1->player2->Picture-> Bitmap -> Handle = LoadBitmap(HInstance, "ID_predator2");
+//Form1->player1->Picture->LoadFromFile("img/alien1.bmp");
+//Form1->player2->Picture->LoadFromFile("img/predator2.bmp");
 moveBallHorizontal = -11;
 moveBallVertical = -8;
 pickups = 0;
